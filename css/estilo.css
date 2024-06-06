@@ -1,0 +1,120 @@
+/* Estilo para el cuerpo de la página */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilo para el contenedor principal */
+.contenedor {
+    max-width: 400px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para los encabezados */
+h2 {
+    margin-top: 0;
+    text-align: center;
+    color: #333;
+}
+
+/* Estilo para los formularios */
+form {
+    margin-top: 20px;
+}
+
+/* Estilo para las etiquetas de los campos */
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+/* Estilo para los campos de entrada */
+input[type="text"],
+input[type="password"],
+input[type="number"],
+input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Estilo para el botón de enviar */
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo para los enlaces */
+a {
+    display: block;
+    text-align: center;
+    color: #007bff;
+    text-decoration: none;
+    margin: 10px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Estilo para los mensajes de error */
+.error-message {
+    color: #dc3545;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.mensaje {
+    font-size: 18px;
+    margin-bottom: 20px;
+    text-align: center; /* Centra el texto */
+}
+
+.boton {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+ul {
+    list-style-type: none;
+}
+
+/* Estilo para la lista de reconocimientos */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+/* Estilo para los elementos de la lista */
+li {
+    margin-bottom: 10px;
+}
+
+/* Estilo para el nombre del reconocimiento */
+.reconocimiento {
+    font-weight: bold;
+}
