@@ -9,23 +9,20 @@
     <body>
         <div class="contenedor">
             <h2>Agregar Pregunta</h2>
-            <form action="index.php?c=Controlador_p&m=guardar" method="post">
-                <label for="textoPregunta">Texto de la Pregunta:</label><br>
-                <input type="text" name="textoPregunta"><br><br>
-
-                <label>Respuestas:</label><br>
-                <input type="text" name="respuestas[]"><br>
-                <input type="text" name="respuestas[]"><br>
-                <input type="text" name="respuestas[]"><br>
-                <input type="text" name="respuestas[]"><br><br>
-
+            <form id="formularioPreguntas" action="index.php?c=controlador_p&m=guardar" method="post">
+                <div id="divEditor">
+                    <!-- Las preguntas y respuestas dinámicas se añadirán aquí -->
+                </div>
+                <button type="button" id="anadirPreguntaButton">Añadir pregunta</button><br><br>
                 <input type="submit" value="Guardar">
             </form>
+            <p id="error-message" class="error-message"></p>
             <?php 
                 if (isset($datos_vista)) { 
-                    echo "<p class='error-message'>" . $datos_vista . "</p>";
+                    echo "<p class='error-message'>".$datos_vista."</p>";
                 } 
             ?>
         </div>
+        <script src="./js/preguntas.js"></script>
     </body>
 </html>

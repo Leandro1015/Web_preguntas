@@ -8,7 +8,7 @@ body {
 
 /* Estilo para el contenedor principal */
 .contenedor {
-    max-width: 400px;
+    max-width: 600px; /* Aumentado el ancho para un mejor espacio visual */
     margin: 50px auto;
     background-color: #fff;
     padding: 20px;
@@ -40,7 +40,7 @@ input[type="text"],
 input[type="password"],
 input[type="number"],
 input[type="email"] {
-    width: 100%;
+    width: calc(100% - 22px); /* Ajustado para los botones que están al lado */
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
@@ -61,6 +61,26 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo para los botones */
+button.boton,
+#anadirPreguntaButton {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+button.boton:hover,
+#anadirPreguntaButton:hover {
     background-color: #0056b3;
 }
 
@@ -87,7 +107,21 @@ a:hover {
 .mensaje {
     font-size: 18px;
     margin-bottom: 20px;
-    text-align: center; /* Centra el texto */
+    text-align: center;
+}
+
+/* Margen entre las preguntas */
+.divPregunta {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* Margen entre respuestas dentro de una pregunta */
+.respuestasContainer input {
+    margin-top: 10px;
 }
 
 .boton {
@@ -97,6 +131,13 @@ a:hover {
     border: none;
     border-radius: 5px;
     text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.boton:hover {
+    background-color: #0056b3;
 }
 
 ul {
@@ -114,7 +155,3 @@ li {
     margin-bottom: 10px;
 }
 
-/* Estilo para el nombre del reconocimiento */
-.reconocimiento {
-    font-weight: bold;
-}

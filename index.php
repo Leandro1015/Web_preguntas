@@ -10,7 +10,7 @@
         $nombre_metodo = $_GET["m"];
     }
 
-    $ruta_controlador = './controlador/' . $nombre_controlador . '.php';
+    $ruta_controlador = 'controlador/' . $nombre_controlador . '.php';
 
     if (file_exists($ruta_controlador)) {
         require_once $ruta_controlador;
