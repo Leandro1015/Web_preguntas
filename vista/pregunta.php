@@ -15,7 +15,15 @@
                 </div>
                 <button type="button" id="anadirPreguntaButton">Añadir pregunta</button><br><br>
                 <input type="submit" value="Guardar">
+                <button type="button" id="descargarPDFButton" class="boton-descargar">Descargar PDF</button>
             </form>
+            
+            <h2>Subir Archivo PDF</h2>
+            <form id="formularioSubirArchivo" action="index.php?c=controlador_p&m=guardarArchivos" method="post" enctype="multipart/form-data">
+                <input type="file" class="boton-descargar" name="archivoPDF" accept="application/pdf">
+                <input type="submit" value="Subir PDF" class="boton-descargar">
+            </form>
+
             <p id="error-message" class="error-message"></p>
             <?php 
                 if (isset($datos_vista)) { 
