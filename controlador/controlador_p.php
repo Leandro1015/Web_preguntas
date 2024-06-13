@@ -1,6 +1,6 @@
 <?php
     require_once './modelo/m_pregunta.php';
-    require_once 'F:\XAMPP\htdocs\servidor\web_preguntas\fpdf\fpdf.php';
+    require_once '/home/proyectosevg/public_html/2daw01/web_preguntas/fpdf/fpdf.php';
 
     class Controlador_p {
         public $nombre_vista; // Nombre de la vista a cargar
@@ -132,46 +132,61 @@
          * Guarda un archivo PDF subido por el usuario en la carpeta 'pdfs'.
          * @return string|null Mensaje de éxito o error, o null en caso de no haber archivo subido.
          */
-        public function guardarArchivos() {
+     
+         public function guardarArchivos() {
             $mensajeError = null;
-
+    
             // Verificar si se ha enviado un archivo mediante el formulario
-            if ($this->esPost() && isset($_FILES['archivoPDF'])) {
-                $archivo = $_FILES['archivoPDF'];
-
-                // Verificar que el archivo sea un PDF
-                if ($archivo['type'] === 'application/pdf') {
+            if ($this->esPost() && isset($_FILES['archivo'])) {
+                $archivo = $_FILES['archivo'];
+                $tipoArchivo = $archivo['type'];
+                $esPDF = $tipoArchivo === 'application/pdf';
+                $esImagen = in_array($tipoArchivo, ['image/jpeg', 'image/png', 'image/gif']);
+    
+                // Verificar que el archivo sea un PDF o una imagen
+                if ($esPDF || $esImagen) {
                     // Directorio donde se guardarán los archivos subidos
-                    $directorioDestino = 'pdfs/';
-
+                    $directorioDestino = $esPDF ? 'pdfs/' : 'imagenes/';
+    
                     // Verificar si el directorio de destino existe, si no, intenta crearlo
                     if (!file_exists($directorioDestino) && !mkdir($directorioDestino, 0777, true)) {
                         $mensajeError = "Error al crear el directorio de destino.";
                         $this->nombre_vista = 'vista/subidaNoExitosa';
                         return $mensajeError;
                     }
-
+    
                     $nombreArchivo = basename($archivo['name']);
                     $rutaDestino = $directorioDestino . $nombreArchivo;
-
+    
                     // Mover el archivo subido al directorio destino
                     if (move_uploaded_file($archivo['tmp_name'], $rutaDestino)) {
-                        $mensajeError = "El archivo se ha subido correctamente.";
-                        $this->nombre_vista = 'vista/subida';
+                        // Guardar información del archivo en la base de datos
+                        $nombreOriginal = $archivo['name'];
+                        $nombreGuardado = $nombreArchivo;
+                        $rutaArchivo = $rutaDestino;
+    
+                        $resultado = $this->pregunta->guardarArchivo($nombreOriginal, $nombreGuardado, $rutaArchivo);
+    
+                        if ($resultado === true) {
+                            $mensajeError = "El archivo se ha subido y guardado correctamente.";
+                            $this->nombre_vista = 'vista/subida';
+                        } else {
+                            $mensajeError = "Error al guardar el archivo en la base de datos: " . $resultado;
+                            $this->nombre_vista = 'vista/subidaNoExitosa';
+                        }
                     } else {
                         $mensajeError = "Hubo un error al subir el archivo.";
                         $this->nombre_vista = 'vista/subidaNoExitosa';
                     }
                 } else {
-                    $mensajeError = "Por favor, suba un archivo PDF válido.";
+                    $mensajeError = "Por favor, suba un archivo PDF o una imagen válida.";
                     $this->nombre_vista = 'vista/subidaNoExitosa';
                 }
             } else {
                 $mensajeError = "No se ha seleccionado ningún archivo.";
                 $this->nombre_vista = 'vista/subidaNoExitosa';
             }
-
-            // Devolver el mensaje de error
+    
             return $mensajeError;
         }
 

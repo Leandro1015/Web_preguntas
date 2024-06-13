@@ -55,28 +55,23 @@
          * @param string $rutaArchivo Ruta donde se guarda el archivo PDF en el servidor.
          * @return bool|string Retorna true si la inserción es exitosa, o un mensaje de error si falla.
          */
-        public function guardarArchivoPDF($nombreOriginal, $nombreGuardado, $rutaArchivo) {
+        public function guardarArchivo($nombreOriginal, $nombreGuardado, $rutaArchivo) {
             // Preparar la consulta SQL
-            $sql = "INSERT INTO archivos_pdf (nombre_original, nombre_guardado, ruta_archivo) VALUES (?, ?, ?)";
+            $sql = "INSERT INTO archivos (nombre_original, nombre_guardado, ruta_archivo) VALUES (?, ?, ?)";
             $consulta = $this->conexion->prepare($sql);
-
+    
             if (!$consulta) {
                 return "Error en la preparación de la consulta: (".$this->conexion->errno.") ".$this->conexion->error;
             }
-
-            // Vincular parámetros
+    
             $consulta->bind_param("sss", $nombreOriginal, $nombreGuardado, $rutaArchivo);
-
-            // Ejecutar la consulta para insertar el archivo PDF
+    
             if ($consulta->execute()) {
-                // Inserción exitosa
                 return true;
             } else {
-                // Error al ejecutar la consulta
-                return "Error al guardar archivo PDF: (".$consulta->errno.") ".$consulta->error;
+                return "Error al guardar archivo: (".$consulta->errno.") ".$consulta->error;
             }
         }
-
 
         /**
          * Obtiene todas las preguntas y sus respuestas de la base de datos.

@@ -20,8 +20,8 @@
             
             <h2>Subir Archivo PDF</h2>
             <form id="formularioSubirArchivo" action="index.php?c=controlador_p&m=guardarArchivos" method="post" enctype="multipart/form-data">
-                <input type="file" class="boton-descargar" name="archivoPDF" accept="application/pdf">
-                <input type="submit" value="Subir PDF" class="boton-descargar">
+                <input type="file" name="archivo" accept=".pdf,image/*">
+                <button type="submit">Subir archivo</button>
             </form>
 
             <p id="error-message" class="error-message"></p>
